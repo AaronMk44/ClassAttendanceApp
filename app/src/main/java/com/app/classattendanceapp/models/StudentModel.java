@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.example.attendanceregister.entities.Student;
+import com.app.classattendanceapp.entities.Student;
 
 import java.util.ArrayList;
 import java.util.List;
