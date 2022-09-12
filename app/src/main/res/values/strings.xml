@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Class Attendance App</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="student_id">Student ID</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="program">Program</string>
+    <string name="add_student">+ Add Student</string>
+    <string name="add_student_label">Add Student</string>
 </resources>
