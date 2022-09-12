@@ -15,22 +15,19 @@ import java.util.List;
 
 public class StudentModel extends SQLiteOpenHelper
 {
-    private static final String DATABASE_NAME = "AttendanceRegister";
+    private static final String DATABASE_NAME = "AttendanceRegister.sqlite";
     private static final int DATABASE_VERSION = 1;
     private static final String TABLE_NAME = "students";
 
     public StudentModel(
-            @Nullable Context context,
-            @Nullable String name,
-            @Nullable SQLiteDatabase.CursorFactory factory,
-            int version
+            @Nullable Context context
     ) {
-        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String DDL = "create table if not exists " + TABLE_NAME +
+        String DDL = "CREATE TABLE " + TABLE_NAME +
                 " (" +
                     "student_id TEXT PRIMARY KEY," +
                     "first_name TEXT NOT NULL," +
@@ -38,6 +35,7 @@ public class StudentModel extends SQLiteOpenHelper
                     "gender TEXT NOT NULL," +
                     "program TEXT NOT NULL" +
                 ")";
+        db.execSQL(DDL);
     }
 
     @Override
@@ -65,7 +63,7 @@ public class StudentModel extends SQLiteOpenHelper
     {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String query = "SELECT  * FROM " + TABLE_NAME;
+        String query = "SELECT * FROM " + TABLE_NAME;
         Cursor cursor = db.rawQuery(query, null);
         List<Student> studentList = new ArrayList<>();
 
