@@ -69,6 +69,11 @@ public class Student {
         this.program = program;
     }
 
+    public String getListViewableStudent()
+    {
+        return this.firstName + " " + this.lastName + " | " + this.studentID;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
