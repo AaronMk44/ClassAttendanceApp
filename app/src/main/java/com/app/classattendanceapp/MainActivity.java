@@ -1,24 +1,27 @@
 package com.app.classattendanceapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.app.classattendanceapp.entities.Student;
-import com.app.classattendanceapp.models.StudentModel;
+import com.app.classattendanceapp.models.CourseModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity{
-    FloatingActionButton addStudent, addCourse, takeAttendance, addAction;
-    TextView takeAttendanceText, addStudentText, addCourseText;
+    FloatingActionButton
+            addStudent,
+            addCourse,
+            takeAttendance,
+            addAction;
+    TextView
+            takeAttendanceText,
+            addStudentText,
+            addCourseText;
     boolean areFabShowing;
 
     BottomNavigationView navBar;
@@ -28,7 +31,12 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // START: Action Button Logic
+        getSupportActionBar().setSubtitle("Home");
+        initVariables();
+        setUpNavBarLogic();
+    }
+
+    private void initVariables(){
         takeAttendance = findViewById(R.id.take_attendance);
         addStudent = findViewById(R.id.add_student);
         addCourse = findViewById(R.id.add_course);
@@ -45,46 +53,72 @@ public class MainActivity extends AppCompatActivity{
         addStudentText.setVisibility(View.GONE);
         addCourseText.setVisibility(View.GONE);
 
-        // END: Action Button Logic
+        areFabShowing = false;
 
-        // Start Navigation Bar Logic
+    }
 
+    private void setUpNavBarLogic(){
         StudentsFragment studentFragment = new StudentsFragment();
+        CoursesFragment coursesFragment = new CoursesFragment();
 
         navBar = findViewById(R.id.bottom_navigation_view);
         navBar.setOnItemSelectedListener(item -> {
+            hideFABs();
             switch (item.getItemId()) {
                 case R.id.home:
+                    getSupportActionBar().setSubtitle("Home");
                     Toast.makeText(this, "Clicked home", Toast.LENGTH_LONG).show();
                     return true;
 
                 case R.id.attendance:
+                    getSupportActionBar().setSubtitle("Attendance");
                     Toast.makeText(this, "Clicked attendance", Toast.LENGTH_LONG).show();
                     return true;
 
                 case R.id.courses:
-                    Toast.makeText(this, "Clicked courses", Toast.LENGTH_LONG).show();
+                    getSupportActionBar().setSubtitle("Courses");
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, coursesFragment).commit();
                     return true;
 
                 case R.id.students:
+                    getSupportActionBar().setSubtitle("Students");
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, studentFragment).commit();
                     return true;
             }
             return false;
         });
-        // END: End Navigation Bar Logic
     }
 
-    public void handleAddStudentAction(View v)
-    {
-        Intent intent = new Intent(this, CreateStudent.class);
+    public void handleAddStudentAction(View v){
+        Intent intent = new Intent(this, AddStudent.class);
         startActivity(intent);
     }
 
-    public void handleAddAction(View view)
-    {
-        areFabShowing = false;
+    public void handleAddCourseAction(View v){
+        Intent intent = new Intent(this, AddCourse.class);
+        startActivity(intent);
+    }
 
+    public void handleAddAction(View view){
+        if(areFabShowing){
+            hideFABs();
+        }else {
+            showFABs();
+        }
+    }
+
+    private void showFABs(){
+        takeAttendance.show();
+        addStudent.show();
+        addCourse.show();
+        takeAttendanceText.setVisibility(View.VISIBLE);
+        addStudentText.setVisibility(View.VISIBLE);
+        addCourseText.setVisibility(View.VISIBLE);
+
+        areFabShowing = true;
+    }
+
+    private void hideFABs(){
         if(areFabShowing){
             takeAttendance.hide();
             addStudent.hide();
@@ -94,16 +128,6 @@ public class MainActivity extends AppCompatActivity{
             addCourseText.setVisibility(View.GONE);
 
             areFabShowing = false;
-
-        }else {
-            takeAttendance.show();
-            addStudent.show();
-            addCourse.show();
-            takeAttendanceText.setVisibility(View.VISIBLE);
-            addStudentText.setVisibility(View.VISIBLE);
-            addCourseText.setVisibility(View.VISIBLE);
-
-            areFabShowing = true;
         }
     }
 }
