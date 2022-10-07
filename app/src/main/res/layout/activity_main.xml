@@ -7,14 +7,36 @@
     tools:context=".MainActivity">
 
     <FrameLayout
-        android:id="@+id/flFragment"
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/take_attendance_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Take Attendance"
+        app:layout_constraintBottom_toBottomOf="@+id/take_attendance"
+        app:layout_constraintEnd_toStartOf="@+id/take_attendance"
+        app:layout_constraintTop_toTopOf="@+id/take_attendance" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/take_attendance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="320dp"
+        android:src="@drawable/attendance"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/add_course_text"
@@ -34,6 +56,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="180dp"
         android:src="@drawable/courses"
+        android:onClick="handleAddCourseAction"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -56,6 +79,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="250dp"
         android:src="@drawable/students"
+        android:onClick="handleAddStudentAction"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -68,12 +92,13 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="100dp"
         android:src="@drawable/plus"
+        android:onClick="handleAddAction"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
+        android:id="@+id/bottom_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="75dp"
         app:layout_constraintBottom_toBottomOf="parent"
