@@ -14,6 +14,18 @@
         android:theme="@style/Theme.ClassAttendanceApp"
         tools:targetApi="31">
         <activity
+            android:name=".EditCourse"
+            android:exported="false" />
+        <activity
+            android:name=".AddCourse"
+            android:exported="false" />
+        <activity
+            android:name=".EditStudent"
+            android:exported="false" />
+        <activity
+            android:name=".AddStudent"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
