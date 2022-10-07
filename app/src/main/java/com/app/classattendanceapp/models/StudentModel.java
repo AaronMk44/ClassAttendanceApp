@@ -16,7 +16,7 @@ import java.util.List;
 public class StudentModel extends SQLiteOpenHelper
 {
     private static final String DATABASE_NAME = "AttendanceRegister.sqlite";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 4;
     private static final String TABLE_NAME = "students";
 
     public StudentModel(
@@ -40,7 +40,9 @@ public class StudentModel extends SQLiteOpenHelper
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        if(newVersion>oldVersion) {
+            onCreate(db);
+        }
     }
 
     public void add(Student o)
@@ -55,7 +57,6 @@ public class StudentModel extends SQLiteOpenHelper
         values.put("program", o.getProgram());
 
         db.insert(TABLE_NAME, null, values);
-
         db.close();
     }
 
