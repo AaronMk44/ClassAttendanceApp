@@ -6,4 +6,8 @@ import com.app.classattendanceapp.entities.Student;
 public class GlobalState {
     public static Student tmpStudent = null;
     public static Course tmpCourse = null;
+    public static void clearState(){
+        tmpCourse = null;
+        tmpCourse = null;
+    }
 }

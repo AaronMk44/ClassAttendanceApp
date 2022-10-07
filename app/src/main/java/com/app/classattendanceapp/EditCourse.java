@@ -48,6 +48,7 @@ public class EditCourse extends AppCompatActivity {
             CourseModel cm = new CourseModel(context);
             cm.update(GlobalState.tmpCourse);
             Toast.makeText(this, "Course Successfully Updated", Toast.LENGTH_LONG).show();
+            GlobalState.clearState();
             finish();
         }
     }

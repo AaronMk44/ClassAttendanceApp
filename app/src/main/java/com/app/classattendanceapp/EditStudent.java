@@ -82,7 +82,7 @@ public class EditStudent extends AppCompatActivity {
             model.update(g, previousID);
 
             Toast.makeText(this, "Student Successfully Edited", Toast.LENGTH_LONG).show();
-
+            GlobalState.clearState();
             finish();
         }else {
             Toast.makeText(this, "Please fill in all the fields.", Toast.LENGTH_SHORT).show();
