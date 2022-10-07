@@ -1,7 +1,7 @@
 package com.app.classattendanceapp;
 
-import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,14 +16,17 @@ import android.widget.ListView;
 
 import com.app.classattendanceapp.entities.Student;
 import com.app.classattendanceapp.models.StudentModel;
+import com.app.classattendanceapp.state.GlobalState;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentsFragment extends Fragment {
     Context context;
-    List<Student> studentList;
-    ListView myStudentList;
-    String[] studentArr;
+    List<Student> databaseStudentList;
+    ListView myListView;
+    ArrayList<String> studentArrayList;
+    ArrayAdapter<String> adapter;
 
     public StudentsFragment() {
 
@@ -33,22 +36,28 @@ public class StudentsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        studentArrayList = new ArrayList<>();
         context = getActivity();
+        databaseStudentList = new StudentModel(context).getAll();
 
-        StudentModel model = new StudentModel(context);
-        studentList = model.getAll();
-
-        studentArr = new String[studentList.size()];
-        for (int i = 0; i < studentList.size(); i++) {
-            studentArr[i] = studentList.get(i).getListViewableStudent();
+        int index = 0;
+        for (Student c: databaseStudentList) {
+            studentArrayList.add(++index + ". " + c.getListViewableStudent());
         }
-
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        databaseStudentList.clear();
+        studentArrayList.clear();
+        databaseStudentList = new StudentModel(context).getAll();
 
+        int index = 0;
+        for (Student c: databaseStudentList) {
+            studentArrayList.add(++index + ". " + c.getListViewableStudent());
+        }
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -63,13 +72,21 @@ public class StudentsFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+         adapter = new ArrayAdapter<>(
                 context,
                 android.R.layout.simple_list_item_1,
-                studentArr
+                 studentArrayList
         );
-        myStudentList = view.findViewById(R.id.student_list);
-        myStudentList.setAdapter(adapter);
+        myListView = view.findViewById(R.id.student_list);
+        myListView.setAdapter(adapter);
+
+        myListView.setOnItemClickListener((parent, v, position, id) -> {
+            GlobalState.tmpStudent = databaseStudentList.get(position);
+
+            Intent intent = new Intent(context, EditStudent.class);
+            startActivity(intent);
+        });
+
         super.onViewCreated(view, savedInstanceState);
     }
 }
