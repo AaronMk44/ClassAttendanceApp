@@ -8,4 +8,13 @@
     <string name="program">Program</string>
     <string name="add_student">+ Add Student</string>
     <string name="add_student_label">Add Student</string>
+    <string name="edit_student">Edit Student</string>
+    <string name="enter_course_name">Enter Course Name</string>
+    <string name="add_course">+ Add Course</string>
+    <string name="enter_course_code">Enter Course Code</string>
+    <string name="edit_course">Edit Course</string>
+    <string name="unenroll_students">Unenroll Students</string>
+    <string name="enroll_students">Enroll Students</string>
+    <string name="view_enrolled_students">View Enrolled</string>
+    <string name="edit">Edit</string>
 </resources>
