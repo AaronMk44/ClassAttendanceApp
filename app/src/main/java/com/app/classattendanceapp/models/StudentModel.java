@@ -9,14 +9,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.app.classattendanceapp.entities.Student;
+import com.app.classattendanceapp.state.GlobalState;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentModel extends SQLiteOpenHelper
 {
-    private static final String DATABASE_NAME = "AttendanceRegister.sqlite";
-    private static final int DATABASE_VERSION = 4;
+    private static final String DATABASE_NAME = GlobalState.DATABASE_NAME;
+    private static final int DATABASE_VERSION = GlobalState.DATABASE_VERSION;
     private static final String TABLE_NAME = "students";
 
     public StudentModel(
