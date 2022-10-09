@@ -18,9 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.app.classattendanceapp.entities.Course;
-import com.app.classattendanceapp.entities.Student;
 import com.app.classattendanceapp.models.CourseModel;
-import com.app.classattendanceapp.models.StudentModel;
 import com.app.classattendanceapp.state.GlobalState;
 
 import java.util.ArrayList;
@@ -51,8 +49,11 @@ public class CoursesFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        GlobalState.clearState();
         databaseCourseList.clear();
         courseArrayList.clear();
+
         databaseCourseList = new CourseModel(context).getAll();
 
         int index = 0;
@@ -93,21 +94,19 @@ public class CoursesFragment extends Fragment {
             @Nullable ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getActivity().getMenuInflater();
-        inflater.inflate(R.menu.course_context_menu, menu);
+        inflater.inflate(R.menu.course_list_context_menu, menu);
     }
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.edit_course_mi:
-                Intent intent = new Intent(context, EditCourse.class);
-                startActivity(intent);
+                Intent intent1 = new Intent(context, EditCourse.class);
+                startActivity(intent1);
                 return true;
             case R.id.view_enrolled_students_mi:
-                return true;
-            case R.id.enroll_students_mi:
-                return true;
-            case R.id.unenroll_students_mi:
+                Intent intent2 = new Intent(context, EnrolledStudents.class);
+                startActivity(intent2);
                 return true;
             default: break;
         }
