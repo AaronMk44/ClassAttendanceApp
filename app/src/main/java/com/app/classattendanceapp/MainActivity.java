@@ -89,6 +89,11 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
+    public void handleTakeAttendance(View v){
+        Intent intent = new Intent(this, TakeAttendance.class);
+        startActivity(intent);
+    }
+
     public void handleAddStudentAction(View v){
         Intent intent = new Intent(this, AddStudent.class);
         startActivity(intent);
