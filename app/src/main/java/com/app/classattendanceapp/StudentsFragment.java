@@ -49,6 +49,7 @@ public class StudentsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        GlobalState.clearState();
         databaseStudentList.clear();
         studentArrayList.clear();
         databaseStudentList = new StudentModel(context).getAll();
