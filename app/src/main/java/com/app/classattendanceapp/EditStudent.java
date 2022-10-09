@@ -32,6 +32,18 @@ public class EditStudent extends AppCompatActivity {
         getSupportActionBar().setSubtitle("Update the form below");
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            default:break;
+        }
+        return true;
+    }
+
     private void initVariables(){
         studentID = findViewById(R.id.student_id_input);
         firstName = findViewById(R.id.first_name_input);
@@ -104,15 +116,5 @@ public class EditStudent extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        super.onOptionsItemSelected(item);
-        switch (item.getItemId()){
-            case android.R.id.home:
-                onBackPressed();
-                break;
-            default:break;
-        }
-        return true;
-    }
+
 }

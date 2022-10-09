@@ -33,6 +33,18 @@ public class AddStudent extends AppCompatActivity {
         getSupportActionBar().setSubtitle("Fill the form below");
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            default:break;
+        }
+        return true;
+    }
+
     public void selectGender(View v)
     {
         boolean checked = ((RadioButton) v).isChecked();
@@ -78,15 +90,4 @@ public class AddStudent extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        super.onOptionsItemSelected(item);
-        switch (item.getItemId()){
-            case android.R.id.home:
-                onBackPressed();
-                break;
-            default:break;
-        }
-        return true;
-    }
 }
