@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Class Attendance App</string>
+    <string name="app_name">Att</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="student_id">Student ID</string>
@@ -17,4 +17,5 @@
     <string name="enroll_students">Enroll Students</string>
     <string name="view_enrolled_students">View Enrolled</string>
     <string name="edit">Edit</string>
+    <string name="enroll_student">Enroll Student</string>
 </resources>
