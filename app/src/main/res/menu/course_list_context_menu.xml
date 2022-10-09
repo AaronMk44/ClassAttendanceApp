@@ -6,12 +6,5 @@
     <item
         android:id="@+id/view_enrolled_students_mi"
         android:title="@string/view_enrolled_students"/>
-    <item
-        android:id="@+id/enroll_students_mi"
-        android:title="@string/enroll_students"/>
-
-    <item
-        android:id="@+id/unenroll_students_mi"
-        android:title="@string/unenroll_students"/>
 
 </menu>
