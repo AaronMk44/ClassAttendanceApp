@@ -1,4 +1,4 @@
-# Class Attendance Register System
+# Class Attendance Register App
 
 The Class Attendance Register System is a mobile application system built for one user. It is an advancement on the class attendance process, making it less time-consuming and easy to register present students in class. This system can be accessed at any time through smartphones or other smart devices.
 
